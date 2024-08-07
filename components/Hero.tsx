@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Caveat_Brush } from "next/font/google";
 import Image from "next/image";
+import { Badge } from "./ui/badge";
 
 type Props = {};
 
@@ -20,7 +21,7 @@ const Hero = (props: Props) => {
   const text2 = "to-do wallpapers".split(" ");
 
   return (
-    <div className="my-44 flex flex-col justify-center items-center gap-10 relative">
+    <div className="my-36 flex flex-col justify-center items-center gap-10 relative">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -28,19 +29,22 @@ const Hero = (props: Props) => {
           duration: 0.35,
         }}
       >
+        <Badge variant={"secondary"}>Beta version coming soon</Badge>
         <Image
           src="/dotted-arrow.png"
           height={90}
           width={90}
           alt="arrow"
-          className="left-10 rotate-45 bottom-5 hidden md:absolute lg:block"
+          className="left-10 rotate-45 bottom-5 hidden md:absolute lg:block select-none"
+          draggable="false"
         />
         <Image
           src="/curve-arrow.png"
           height={90}
           width={90}
           alt="arrow"
-          className="hidden lg:block md:absolute right-5 rotate-180 top-32"
+          className="hidden lg:block md:absolute right-5 rotate-180 top-32 select-none"
+          draggable="false"
         />
       </motion.div>
       <div className="flex flex-col gap-3 sm:gap-4">
