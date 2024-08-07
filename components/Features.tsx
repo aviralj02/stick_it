@@ -59,9 +59,9 @@ const Features = (props: Props) => {
     <div className="flex flex-col items-center my-44 space-y-10">
       <Badge variant="secondary">Features</Badge>
 
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full rounded-md bg-white px-10 py-8">
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full">
         {featureList.map((feature, index) => (
-          <Card key={index} className="space-y-14 shadow-none border-none">
+          <Card key={index} className="space-y-14 shadow-none">
             <CardHeader className="gap-2">{feature.icon}</CardHeader>
             <CardContent className="space-y-3">
               <CardTitle>{feature.title}</CardTitle>
