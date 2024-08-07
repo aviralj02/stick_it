@@ -43,7 +43,7 @@ const Hero = (props: Props) => {
           className="hidden lg:block md:absolute right-5 rotate-180 top-32"
         />
       </motion.div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3 sm:gap-4">
         {/* <h1 className="text-4xl !leading-[60px] font-extrabold lg:text-5xl mx-auto text-center max-w-3xl">
           Seamlessly generate{" "}
           <span className="underline decoration-wavy underline-offset-8 text-red-500">
@@ -52,7 +52,7 @@ const Hero = (props: Props) => {
           TO-DO wallpapers
         </h1> */}
 
-        <h1 className="!leading-[60px] flex gap-2 font-extrabold text-5xl mx-auto text-center max-w-3xl">
+        <h1 className="flex gap-2 font-extrabold text-3xl sm:text-5xl mx-auto text-center w-full justify-center flex-wrap max-w-3xl">
           {text1.map((el, i) => (
             <motion.span
               initial={{ opacity: 0 }}
@@ -71,7 +71,7 @@ const Hero = (props: Props) => {
             </motion.span>
           ))}
         </h1>
-        <h1 className="text-4xl !leading-[60px] flex gap-2 font-extrabold lg:text-5xl mx-auto text-center max-w-3xl">
+        <h1 className="text-3xl flex gap-2 font-extrabold sm:text-5xl mx-auto text-center max-w-3xl">
           {text2.map((el, i) => (
             <motion.span
               initial={{ opacity: 0 }}
@@ -91,7 +91,7 @@ const Hero = (props: Props) => {
           ))}
         </h1>
         <motion.p
-          className="leading-7 text-lg [&:not(:first-child)]:mt-6 mx-auto text-center max-w-2xl"
+          className="leading-7 sm:text-lg text-base [&:not(:first-child)]:mt-6 mx-auto text-center max-w-2xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
