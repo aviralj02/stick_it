@@ -26,36 +26,38 @@ const Header = (props: Props) => {
   });
 
   return (
-    <motion.div
-      className={cn(
-        `flex max-w-screen-xl mx-auto sticky top-12 justify-between items-center my-12 py-2 transition-all z-30`,
-        navStyle
-      )}
-      transition={{
-        duration: 0.1,
-        ease: "easeInOut",
-      }}
-    >
-      <div>
-        <Link href="/" className="flex gap-3 items-center">
-          <Image height={30} width={30} src="/logo.png" alt="logo" />
-          <h1
-            className={cn(
-              logoStyle,
-              `font-sans tracking-tight cursor-pointer font-bold text-2xl`
-            )}
-          >
-            stick it.
-          </h1>
-        </Link>
-      </div>
-      <div>
-        <Button className="rounded-full items-center gap-2" size="sm">
-          <Sparkles height={15} width={15} fill="#fff" />
-          Start a project
-        </Button>
-      </div>
-    </motion.div>
+    <div className="sticky top-12 mx-3 z-30">
+      <motion.div
+        className={cn(
+          `flex max-w-screen-xl mx-auto justify-between items-center my-12 py-2 transition-all`,
+          navStyle
+        )}
+        transition={{
+          duration: 0.1,
+          ease: "easeInOut",
+        }}
+      >
+        <div>
+          <Link href="/" className="flex gap-3 items-center">
+            <Image height={30} width={30} src="/logo.png" alt="logo" />
+            <h1
+              className={cn(
+                logoStyle,
+                `font-sans tracking-tight cursor-pointer font-bold text-2xl`
+              )}
+            >
+              stick it.
+            </h1>
+          </Link>
+        </div>
+        <div>
+          <Button className="rounded-full items-center gap-2" size="sm">
+            <Sparkles height={15} width={15} fill="#fff" />
+            Start a project
+          </Button>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
