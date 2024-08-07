@@ -15,24 +15,20 @@ const Header = (props: Props) => {
   const [logoStyle, setLogoStyle] = useState("");
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious()!;
-
-    console.log(latest);
-
-    if (latest > previous && latest > 150) {
+  useMotionValueEvent(scrollY, "change", () => {
+    if (scrollY.get() > 150) {
       setNavStyle("border border-border bg-secondary rounded-full px-3");
       setLogoStyle("hidden");
     } else {
       setNavStyle("");
-      setLogoStyle("")
+      setLogoStyle("");
     }
   });
 
   return (
     <motion.div
       className={cn(
-        `flex max-w-screen-xl mx-auto sticky top-12 justify-between items-center my-12 py-2 transition-all`,
+        `flex max-w-screen-xl mx-auto sticky top-12 justify-between items-center my-12 py-2 transition-all z-30`,
         navStyle
       )}
       transition={{
