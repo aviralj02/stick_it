@@ -43,7 +43,7 @@ const Header = (props: Props) => {
             <h1
               className={cn(
                 logoStyle,
-                `font-sans tracking-tight cursor-pointer font-bold text-2xl`
+                `font-sans tracking-tight cursor-pointer font-bold text-2xl text-black`
               )}
             >
               stick it.
