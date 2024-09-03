@@ -41,7 +41,7 @@ export default function page() {
         <div className="space-y-8">
           <div className="flex flex-col gap-2">
             <Label htmlFor="filters">Filters</Label>
-            <Select id="filters" defaultValue="none">
+            {/* <Select id="filters" defaultValue="none">
               <SelectTrigger>
                 <SelectValue placeholder="Select a filter" />
               </SelectTrigger>
@@ -51,7 +51,7 @@ export default function page() {
                 <SelectItem value="sepia">Sepia</SelectItem>
                 <SelectItem value="invert">Invert</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
           <div className="flex flex-col gap-2 text-xs">
             <Label htmlFor="orientation">Orientation</Label>
