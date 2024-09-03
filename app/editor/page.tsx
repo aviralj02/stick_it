@@ -4,13 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Image from "next/image";
 import { useState } from "react";
@@ -41,17 +34,6 @@ export default function page() {
         <div className="space-y-8">
           <div className="flex flex-col gap-2">
             <Label htmlFor="filters">Filters</Label>
-            {/* <Select id="filters" defaultValue="none">
-              <SelectTrigger>
-                <SelectValue placeholder="Select a filter" />
-              </SelectTrigger>
-              <SelectContent className="">
-                <SelectItem value="none">None</SelectItem>
-                <SelectItem value="grayscale">Grayscale</SelectItem>
-                <SelectItem value="sepia">Sepia</SelectItem>
-                <SelectItem value="invert">Invert</SelectItem>
-              </SelectContent>
-            </Select> */}
           </div>
           <div className="flex flex-col gap-2 text-xs">
             <Label htmlFor="orientation">Orientation</Label>
