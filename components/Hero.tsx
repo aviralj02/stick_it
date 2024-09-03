@@ -115,7 +115,7 @@ const Hero = (props: Props) => {
           duration: 0.35,
         }}
       >
-        <Link href="#">
+        <Link href="/editor">
           <Button className="rounded-full items-center gap-2" size="sm">
             <Sparkles height={15} width={15} fill="#fff" />
             Start a project
