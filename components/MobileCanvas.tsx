@@ -6,34 +6,34 @@ type Props = {
   todos: string[];
 };
 
-const DesktopCanvas = ({ todos }: Props): ReactElement => {
+const MobileCanvas = ({ todos }: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
 
-  const enableDesktopStandard = (
+  const enableMobileStandard = (
     canvasRef: MutableRefObject<HTMLDivElement | null>
   ): void => {
     if (canvasRef.current) {
       canvasRef.current.classList.remove("rounded-md");
-      canvasRef.current.style.width = "1920px";
-      canvasRef.current.style.height = "1080px";
-      canvasRef.current.style.fontSize = "28px";
+      canvasRef.current.style.width = "540px";
+      canvasRef.current.style.height = "960px";
+      canvasRef.current.style.fontSize = "20px";
     }
   };
 
-  const disableDesktopStandard = (
+  const disableMobileStandard = (
     canvasRef: MutableRefObject<HTMLDivElement | null>
   ): void => {
     if (canvasRef.current) {
       canvasRef.current.classList.add("rounded-md");
-      canvasRef.current.style.width = "960px";
-      canvasRef.current.style.height = "540px";
+      canvasRef.current.style.width = "324px";
+      canvasRef.current.style.height = "576px";
       canvasRef.current.style.fontSize = "14px";
     }
   };
 
   const handleDownload = async (): Promise<void> => {
     if (canvasRef.current) {
-      enableDesktopStandard(canvasRef);
+      enableMobileStandard(canvasRef);
 
       const canvas = await html2canvas(canvasRef.current);
 
@@ -43,23 +43,28 @@ const DesktopCanvas = ({ todos }: Props): ReactElement => {
       link.download = "stick-it-wallpaper.png";
       link.click();
 
-      disableDesktopStandard(canvasRef);
+      disableMobileStandard(canvasRef);
     }
   };
 
   return (
-    <div className="flex flex-col w-fit mx-auto justify-center gap-6 h-full">
-      <Button className="self-end" variant={"outline"} onClick={handleDownload}>
+    <div className="flex flex-col w-full justify-center gap-6 h-full">
+      <Button
+        className="self-end mx-6"
+        variant={"outline"}
+        onClick={handleDownload}
+      >
         Export
       </Button>
+
       <div
         ref={canvasRef}
         style={{
-          width: "960px",
-          height: "540px",
+          width: "324px",
+          height: "576px",
           fontSize: "14px",
         }}
-        className="bg-black text-white flex flex-col gap-1 items-center justify-center rounded-md p-5 box-border overflow-hidden font-sans"
+        className="bg-black text-white flex flex-col gap-1  mx-auto items-center justify-center rounded-md p-5 box-border overflow-hidden font-sans"
       >
         {todos.length === 0 ? (
           <span className="opacity-50 select-none">
@@ -77,4 +82,4 @@ const DesktopCanvas = ({ todos }: Props): ReactElement => {
   );
 };
 
-export default DesktopCanvas;
+export default MobileCanvas;

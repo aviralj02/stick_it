@@ -51,9 +51,11 @@ const Header = (props: Props) => {
           </Link>
         </div>
         <div>
-          <Button className="rounded-full items-center gap-2" size="sm">
-            <Sparkles height={15} width={15} fill="#fff" />
-            Start a project
+          <Button className="rounded-full items-center gap-2" size="sm" asChild>
+            <Link href={"/editor"}>
+              <Sparkles height={15} width={15} fill="#fff" />
+              Start a project
+            </Link>
           </Button>
         </div>
       </motion.div>

@@ -1,6 +1,7 @@
 "use client";
 
 import DesktopCanvas from "@/components/DesktopCanvas";
+import MobileCanvas from "@/components/MobileCanvas";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -8,11 +9,13 @@ import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Editor() {
   const [todos, setTodos] = useState<string[]>([]);
   const [newTodo, setNewTodo] = useState<string>("");
+  const [isDesktopView, setIsDesktopView] = useState<boolean>(true);
 
   const addTodo = (): void => {
     if (newTodo.trim() !== "") {
@@ -29,23 +32,31 @@ export default function Editor() {
   return (
     <div className="flex min-h-screen w-full">
       <aside className="bg-background border-r w-96 py-4 px-6 flex flex-col gap-12">
-        <div className="flex items-center gap-2">
+        <Link href={"/"} className="flex items-center gap-2">
           <Image height={20} width={20} src="/logo.png" alt="logo" />
           <h1
             className={`font-sans tracking-tight cursor-pointer font-bold text-lg text-black`}
           >
             stick it.
           </h1>
-        </div>
+        </Link>
 
         <div className="space-y-8">
           <div className="flex flex-col gap-2 text-xs">
             <Label htmlFor="orientation">Orientation</Label>
             <ToggleGroup type="single" defaultValue="landscape">
-              <ToggleGroupItem className="text-xs" value="landscape">
+              <ToggleGroupItem
+                className="text-xs"
+                value="landscape"
+                onClick={() => setIsDesktopView(true)}
+              >
                 Landscape
               </ToggleGroupItem>
-              <ToggleGroupItem className="text-xs" value="portrait">
+              <ToggleGroupItem
+                className="text-xs"
+                value="portrait"
+                onClick={() => setIsDesktopView(false)}
+              >
                 Portrait
               </ToggleGroupItem>
             </ToggleGroup>
@@ -86,7 +97,11 @@ export default function Editor() {
       </aside>
 
       <main className="flex-1 p-4">
-        <DesktopCanvas todos={todos} />
+        {isDesktopView ? (
+          <DesktopCanvas todos={todos} />
+        ) : (
+          <MobileCanvas todos={todos} />
+        )}
       </main>
     </div>
   );
