@@ -3,7 +3,7 @@ import html2canvas from "html2canvas";
 import { Button } from "./ui/button";
 
 type Props = {
-  todos: string[];
+  todos: Todo[];
 };
 
 const MobileCanvas = ({ todos }: Props): ReactElement => {
@@ -64,18 +64,18 @@ const MobileCanvas = ({ todos }: Props): ReactElement => {
           height: "576px",
           fontSize: "14px",
         }}
-        className="bg-black text-white flex flex-col gap-1  mx-auto items-center justify-center rounded-md p-5 box-border overflow-hidden font-sans"
+        className="bg-black text-white flex flex-col mx-auto items-center justify-center rounded-md p-5 box-border overflow-hidden font-sans"
       >
         {todos.length === 0 ? (
           <span className="opacity-50 select-none">
             Your Todos will display here...
           </span>
         ) : (
-          todos.map((todo, index) => (
-            <div key={index}>
-              <span>• {todo}</span>
-            </div>
-          ))
+          <div className="flex flex-col gap-2 max-w-96">
+            {todos.map((todo, index) => (
+              <span key={index}>• {todo.task}</span>
+            ))}
+          </div>
         )}
       </div>
     </div>

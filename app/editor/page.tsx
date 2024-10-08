@@ -13,13 +13,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Editor() {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState<string>("");
   const [isDesktopView, setIsDesktopView] = useState<boolean>(true);
 
   const addTodo = (): void => {
     if (newTodo.trim() !== "") {
-      setTodos([...todos, newTodo.trim()]);
+      setTodos([...todos, { task: newTodo.trim(), isChecked: true }]);
       setNewTodo("");
     }
   };
@@ -28,6 +28,15 @@ export default function Editor() {
     const remainingTodos = todos.filter((_, i: number) => i !== index);
     setTodos(remainingTodos);
   };
+
+  const updateTodos = (index: number): void => {
+    const updatedTodos = todos.map((todo, i) =>
+      i === index ? { ...todo, isChecked: !todo.isChecked } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
+  const filteredTodos = todos.filter((todo) => todo.isChecked);
 
   return (
     <div className="flex min-h-screen w-full">
@@ -82,8 +91,11 @@ export default function Editor() {
               {todos.map((todo, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
-                    <Checkbox />
-                    <span className="text-sm">{todo}</span>
+                    <Checkbox
+                      checked={todo.isChecked}
+                      onCheckedChange={() => updateTodos(index)}
+                    />
+                    <span className="text-sm">{todo.task}</span>
                   </div>
                   <Trash2
                     onClick={() => deleteTodo(index)}
@@ -98,9 +110,9 @@ export default function Editor() {
 
       <main className="flex-1 p-4">
         {isDesktopView ? (
-          <DesktopCanvas todos={todos} />
+          <DesktopCanvas todos={filteredTodos} />
         ) : (
-          <MobileCanvas todos={todos} />
+          <MobileCanvas todos={filteredTodos} />
         )}
       </main>
     </div>
