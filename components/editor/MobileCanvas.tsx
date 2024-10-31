@@ -1,6 +1,6 @@
 import React, { MutableRefObject, ReactElement, useRef } from "react";
 import html2canvas from "html2canvas";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 type Props = {
   todos: Todo[];
@@ -48,9 +48,9 @@ const MobileCanvas = ({ todos }: Props): ReactElement => {
   };
 
   return (
-    <div className="flex flex-col w-full justify-center gap-6 h-full">
+    <div className="flex items-center justify-center w-full h-full">
       <Button
-        className="self-end mx-6"
+        className="absolute right-10 top-5"
         variant={"outline"}
         onClick={handleDownload}
       >
