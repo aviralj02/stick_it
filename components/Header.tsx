@@ -26,10 +26,10 @@ const Header = (props: Props) => {
   });
 
   return (
-    <div className="sticky top-12 mx-3 z-30">
+    <div className="sticky top-7 mx-3 z-30">
       <motion.div
         className={cn(
-          `flex max-w-screen-xl mx-auto justify-between items-center my-12 py-2 transition-all`,
+          `flex max-w-screen-xl mx-auto justify-between items-center my-7 py-2 transition-all`,
           navStyle
         )}
         transition={{
@@ -50,6 +50,7 @@ const Header = (props: Props) => {
             </h1>
           </Link>
         </div>
+
         <div>
           <Button className="rounded-full items-center gap-2" size="sm" asChild>
             <Link href={"/editor"}>
