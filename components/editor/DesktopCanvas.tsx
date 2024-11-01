@@ -1,19 +1,15 @@
 import React, { MutableRefObject, ReactElement, useRef } from "react";
 import html2canvas from "html2canvas";
 import { Button } from "../ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import useTodos from "@/hooks/useTodos";
 
-type Props = {
-  todos: Todo[];
-};
+type Props = {};
 
-const DesktopCanvas = ({ todos }: Props): ReactElement => {
+const DesktopCanvas = (props: Props): ReactElement => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
+
+  const { todos } = useTodos();
+  const filteredTodos = todos.filter((todo) => todo.isChecked);
 
   const enableDesktopStandard = (
     canvasRef: MutableRefObject<HTMLDivElement | null>
@@ -54,9 +50,9 @@ const DesktopCanvas = ({ todos }: Props): ReactElement => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full snap-end">
       <Button
-        className="absolute right-10 top-5"
+        className="absolute right-4 top-4"
         variant={"outline"}
         onClick={handleDownload}
       >
@@ -71,13 +67,13 @@ const DesktopCanvas = ({ todos }: Props): ReactElement => {
         }}
         className="bg-black text-white flex flex-col items-center justify-center rounded-md p-5 box-border overflow-hidden font-sans"
       >
-        {todos.length === 0 ? (
+        {filteredTodos.length === 0 ? (
           <span className="opacity-50 select-none">
             Your Todos will display here...
           </span>
         ) : (
           <div className="flex flex-col gap-2 max-w-96">
-            {todos.map((todo, index) => (
+            {filteredTodos.map((todo, index) => (
               <span key={index}>• {todo.task}</span>
             ))}
           </div>

@@ -23,49 +23,23 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import useTodos from "@/hooks/useTodos";
 
-type Props = {
-  todos: Todo[];
-  newTodo: string;
-  setTodos: (todos: Todo[]) => void;
-  setNewTodo: (newTodo: string) => void;
+interface Props {
   setIsDesktopView: (state: boolean) => void;
-};
+}
 
-const Sidebar = ({
-  todos,
-  newTodo,
-  setTodos,
-  setNewTodo,
-  setIsDesktopView,
-}: Props) => {
+const Sidebar = ({ setIsDesktopView }: Props) => {
+  const { todos, addTodo, deleteTodo, updateTodo } = useTodos();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [newTodo, setNewTodo] = useState<string>("");
 
   const todoInputRef = useRef<HTMLInputElement>(null);
-
-  const addTodo = (): void => {
-    if (newTodo.trim() !== "") {
-      setTodos([...todos, { task: newTodo.trim(), isChecked: true }]);
-      setNewTodo("");
-    }
-  };
-
-  const deleteTodo = (index: number): void => {
-    const remainingTodos = todos.filter((_, i: number) => i !== index);
-    setTodos(remainingTodos);
-  };
-
-  const updateTodos = (index: number): void => {
-    const updatedTodos = todos.map((todo, i) =>
-      i === index ? { ...todo, isChecked: !todo.isChecked } : todo
-    );
-    setTodos(updatedTodos);
-  };
 
   return (
     <aside
       className={cn(
-        "h-full bg-background border-r flex flex-col py-4 gap-12",
+        "absolute left-0 top-0 h-full bg-background border-r flex flex-col py-4 gap-12",
         "overflow-hidden transition-all duration-300 ease-in-out",
         isCollapsed ? "w-16" : "w-96 px-6"
       )}
@@ -160,27 +134,41 @@ const Sidebar = ({
                 onChange={(e) => setNewTodo(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    addTodo();
+                    if (newTodo.trim() !== "") {
+                      addTodo(newTodo.trim());
+                    }
+                    setNewTodo("");
                   }
                 }}
               />
-              <Button onClick={addTodo}>Add</Button>
+              <Button
+                onClick={() => {
+                  if (newTodo.trim() !== "") {
+                    addTodo(newTodo.trim());
+                  }
+                  setNewTodo("");
+                }}
+              >
+                Add
+              </Button>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               {todos.map((todo, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
                     <Checkbox
                       checked={todo.isChecked}
-                      onCheckedChange={() => updateTodos(index)}
+                      onCheckedChange={() => updateTodo(index)}
                     />
                     <span className="text-sm">{todo.task}</span>
                   </div>
-                  <Trash2
-                    onClick={() => deleteTodo(index)}
-                    className="w-4 h-4 mx-1 flex-shrink-0 text-red-600 cursor-pointer"
-                  />
+                  <button>
+                    <Trash2
+                      onClick={() => deleteTodo(index)}
+                      className="w-4 h-4 mx-1 text-red-600"
+                    />
+                  </button>
                 </div>
               ))}
             </div>
