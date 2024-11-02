@@ -39,7 +39,14 @@ const Header = (props: Props) => {
       >
         <div>
           <Link href="/" className="flex gap-3 items-center">
-            <Image height={30} width={30} src="/logo.png" alt="logo" />
+            <Image
+              draggable="false"
+              className="select-none"
+              height={30}
+              width={30}
+              src="/logo.png"
+              alt="logo"
+            />
             <h1
               className={cn(
                 logoStyle,

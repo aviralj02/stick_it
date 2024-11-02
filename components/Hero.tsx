@@ -29,7 +29,11 @@ const Hero = (props: Props) => {
           duration: 0.35,
         }}
       >
-        <Badge variant={"secondary"}>Beta version coming soon</Badge>
+        <Badge variant={"secondary"}>
+          <div className="rounded-full bg-green-400 h-[8px] w-[8px] inline-block mr-2"></div>
+          <div className="absolute animate-ping rounded-full bg-green-400 h-[8px] w-[8px] mr-2 "></div>
+          Version 1.0 Released
+        </Badge>
         <Image
           src="/dotted-arrow.png"
           height={90}
@@ -114,7 +118,7 @@ const Hero = (props: Props) => {
           </Button>
         </Link>
 
-        <a href="https://github.com/aviralj02/stick_it">
+        <a target="_blank" href="https://github.com/aviralj02/stick_it">
           <Button
             className="flex rounded-full items-center gap-2"
             size="sm"
